@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOM Manipulation and Event Handling</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 30px;
+        background-color: white;
+        transition: 0.5s;
+    }
+
+    .container{
+        width: 70%;
+        margin: auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px gray;
+    }
+
+    input{
+        padding: 10px;
+        width: 60%;
+        margin: 10px;
+    }
+
+    button{
+        padding: 10px 15px;
+        margin: 5px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+    }
+
+    button:hover{
+        background-color: #0056b3;
+    }
+
+    #paragraph{
+        margin-top: 20px;
+        font-size: 18px;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 id="heading">Welcome to JavaScript DOM</h1>
+
+    <input type="text"
+           id="messageInput"
+           placeholder="Enter a message">
+
+    <br>
+
+    <button onclick="changeHeading()">
+        Change Heading
+    </button>
+
+    <button onclick="changeBackground()">
+        Change Background Color
+    </button>
+
+    <button onclick="changeFontSize()">
+        Change Font Size
+    </button>
+
+    <button onclick="toggleParagraph()">
+        Show/Hide Paragraph
+    </button>
+
+    <button onclick="resetPage()">
+        Reset Page
+    </button>
+
+    <p id="paragraph">
+        This paragraph can be shown or hidden using JavaScript.
+    </p>
+
+</div>
+
+<script>
+
+let fontSize = 32;
+
+// onchange event
+document.getElementById("messageInput").onchange = function()
+{
+    alert("Input Changed: " + this.value);
+};
+
+// addEventListener() event
+document.getElementById("heading").addEventListener(
+    "mouseover",
+    function()
+    {
+        this.style.color = "red";
+    }
+);
+
+// Change Heading Text
+function changeHeading()
+{
+    let message =
+        document.getElementById("messageInput").value;
+
+    if(message.trim() !== "")
+    {
+        document.getElementById("heading").innerText =
+            message;
+    }
+    else
+    {
+        alert("Please enter a message.");
+    }
+}
+
+// Change Background Color
+function changeBackground()
+{
+    const colors =
+    [
+        "lightblue",
+        "lightgreen",
+        "lightyellow",
+        "pink",
+        "lavender"
+    ];
+
+    let randomColor =
+        colors[Math.floor(Math.random() * colors.length)];
+
+    document.body.style.backgroundColor = randomColor;
+}
+
+// Change Font Size
+function changeFontSize()
+{
+    fontSize += 4;
+
+    document.getElementById("heading").style.fontSize =
+        fontSize + "px";
+}
+
+// Show/Hide Paragraph
+function toggleParagraph()
+{
+    let para =
+        document.getElementById("paragraph");
+
+    if(para.style.display === "none")
+    {
+        para.style.display = "block";
+    }
+    else
+    {
+        para.style.display = "none";
+    }
+}
+
+// Reset Page
+function resetPage()
+{
+    document.getElementById("heading").innerText =
+        "Welcome to JavaScript DOM";
+
+    document.getElementById("messageInput").value = "";
+
+    document.body.style.backgroundColor = "white";
+
+    document.getElementById("heading").style.fontSize =
+        "32px";
+
+    document.getElementById("heading").style.color =
+        "black";
+
+    document.getElementById("paragraph").style.display =
+        "block";
+
+    fontSize = 32;
+}
+
+</script>
+
+</body>
+</html>
